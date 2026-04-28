@@ -1,0 +1,104 @@
+### Base URL
+@baseUrl = http://localhost:8085
+
+### ------------------------------------------------------------
+### 1. Buscar contexto de localização - exemplo válido
+### ------------------------------------------------------------
+GET {{baseUrl}}/locations/context?latitude=-22.91&longitude=-43.17
+Accept: application/json
+
+###
+
+### ------------------------------------------------------------
+### 2. Buscar contexto de localização - outro exemplo válido
+### ------------------------------------------------------------
+GET {{baseUrl}}/locations/context?latitude=48.85&longitude=-72.35
+Accept: application/json
+
+###
+
+### ------------------------------------------------------------
+### 3. Buscar contexto de localização - região equatorial
+### ------------------------------------------------------------
+GET {{baseUrl}}/locations/context?latitude=2.50&longitude=110.30
+Accept: application/json
+
+###
+
+### ------------------------------------------------------------
+### 4. Validar coordenadas - válido
+### ------------------------------------------------------------
+POST {{baseUrl}}/locations/validate
+Content-Type: application/json
+Accept: application/json
+
+{
+  "latitude": -22.91,
+  "longitude": -43.17
+}
+
+###
+
+### ------------------------------------------------------------
+### 5. Validar coordenadas - latitude inválida
+### ------------------------------------------------------------
+POST {{baseUrl}}/locations/validate
+Content-Type: application/json
+Accept: application/json
+
+{
+  "latitude": 120.00,
+  "longitude": -43.17
+}
+
+###
+
+### ------------------------------------------------------------
+### 6. Validar coordenadas - longitude inválida
+### ------------------------------------------------------------
+POST {{baseUrl}}/locations/validate
+Content-Type: application/json
+Accept: application/json
+
+{
+  "latitude": -22.91,
+  "longitude": -190.00
+}
+
+###
+
+### ------------------------------------------------------------
+### 7. Buscar contexto - latitude inválida
+### ------------------------------------------------------------
+GET {{baseUrl}}/locations/context?latitude=500&longitude=-43.17
+Accept: application/json
+
+###
+
+### ------------------------------------------------------------
+### 8. Buscar contexto - longitude inválida
+### ------------------------------------------------------------
+GET {{baseUrl}}/locations/context?latitude=-22.91&longitude=999
+Accept: application/json
+
+###
+
+### ------------------------------------------------------------
+### 9. Buscar contexto - parâmetro faltando
+### ------------------------------------------------------------
+GET {{baseUrl}}/locations/context?latitude=-22.91
+Accept: application/json
+
+###
+
+### ------------------------------------------------------------
+### 10. Validar coordenadas - body com campos nulos
+### ------------------------------------------------------------
+POST {{baseUrl}}/locations/validate
+Content-Type: application/json
+Accept: application/json
+
+{
+  "latitude": null,
+  "longitude": null
+}
